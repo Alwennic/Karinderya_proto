@@ -11,7 +11,7 @@ WAIT=5
 check() {
   name="$1"
   path="$2"
-  if docker compose exec -T proxy wget -qO- "http://localhost$path" > /tmp/smoke_out 2>/dev/null; then
+  if docker compose exec -T proxy wget -qO- "http://127.0.0.1$path" > /tmp/smoke_out 2>/dev/null; then
     echo "PASS  $name ($path)"
     return 0
   fi
