@@ -1,4 +1,4 @@
-# \# Karinderya: Campus Canteen Ordering System
+# \# Karinderya: Campus Canteen Menu System
 
 SYSIN Final Project (System Architecture and Integration)
 Group: Basa Group
