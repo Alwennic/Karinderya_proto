@@ -1,4 +1,4 @@
-# \# CanteenGo: Campus Canteen Ordering System
+# \# Karinderya: Campus Canteen Ordering System
 
 # 
 
