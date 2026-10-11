@@ -1,0 +1,14 @@
+# secrets (never commit)
+.env
+
+# dependencies and build output
+node_modules/
+target/
+__pycache__/
+*.pyc
+.venv/
+
+# OS and editor
+.DS_Store
+.vscode/
+.idea/
