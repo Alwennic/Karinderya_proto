@@ -1,4 +1,4 @@
-# \# Karinderya: Campus Canteen Ordering System
+# \# Karinderya: Campus Canteen Menu System
 
 SYSIN Final Project (System Architecture and Integration)
 Group: Basa Group
@@ -6,7 +6,7 @@ Group: Basa Group
 
 # \## Description
 
-Karinderya_proto is a campus canteen ordering system where students can easily view the available menu items without needing an account, while canteen staff can securely log in to manage the menu. Staff have the ability to add, edit, or remove dishes, ensuring that the displayed menu is always up to date. The system runs as Docker containers behind a single Nginx entry point, with Jenkins handling automated build, test, and deployment on every push to `main`.
+Karinderya_proto is a campus canteen menu system where students can easily view the available menu items without needing an account, while canteen staff can securely log in to manage the menu. Staff have the ability to add, edit, or remove dishes, ensuring that the displayed menu is always up to date. The system runs as Docker containers behind a single Nginx entry point, with Jenkins handling automated build, test, and deployment on every push to `main`.
 
 # \## Architecture
 
