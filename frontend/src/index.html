@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Karinderya_proto: Today's Menu</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">Karinderya_proto</a>
+      <nav><a href="login.html">Staff login</a></nav>
+    </div>
+  </header>
+
+  <main>
+    <h1>Today's menu</h1>
+    <p class="sub">Prices are per serving. Crossed-out items are sold out.</p>
+    <div class="board" id="board" aria-live="polite">
+      <p class="empty">Loading the menu...</p>
+    </div>
+  </main>
+
+  <footer>Karinderya_proto &middot; Build <span id="build">__BUILD_NUMBER__</span></footer>
+
+  <script src="app.js"></script>
+  <script>
+    async function renderMenu() {
+      const board = document.getElementById("board");
+      board.textContent = "";
+      let items;
+      try {
+        items = await getItems();
+      } catch (err) {
+        const p = document.createElement("p");
+        p.className = "error";
+        p.textContent = err.message;
+        board.appendChild(p);
+        return;
+      }
+      if (items.length === 0) {
+        const p = document.createElement("p");
+        p.className = "empty";
+        p.textContent = "No items on the menu yet. Check back later.";
+        board.appendChild(p);
+        return;
+      }
+
+      const byCategory = {};
+      items.forEach((item) => {
+        (byCategory[item.category] = byCategory[item.category] || []).push(item);
+      });
+
+      Object.keys(byCategory).forEach((category) => {
+        const section = document.createElement("section");
+        const h2 = document.createElement("h2");
+        h2.textContent = category;
+        section.appendChild(h2);
+
+        const ul = document.createElement("ul");
+        byCategory[category].forEach((item) => {
+          const li = document.createElement("li");
+          if (!item.available) li.className = "soldout";
+
+          const name = document.createElement("span");
+          name.className = "name";
+          name.textContent = item.name;
+
+          const leader = document.createElement("span");
+          leader.className = "leader";
+
+          const price = document.createElement("span");
+          price.className = "price";
+          price.textContent = formatPrice(item.price);
+
+          li.append(name, leader, price);
+          if (!item.available) {
+            const tag = document.createElement("span");
+            tag.className = "soldout-tag";
+            tag.textContent = "Sold out";
+            li.appendChild(tag);
+          }
+          ul.appendChild(li);
+        });
+        section.appendChild(ul);
+        board.appendChild(section);
+      });
+    }
+
+    renderMenu();
+
+    // When running locally the placeholder is still in the footer
+    const build = document.getElementById("build");
+    if (build.textContent.startsWith("__")) build.textContent = "dev";
+  </script>
+</body>
+</html>
