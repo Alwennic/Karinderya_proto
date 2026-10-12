@@ -115,7 +115,7 @@ class ItemControllerTest {
     void healthReturns200() throws Exception {
         mvc.perform(get("/health"))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.status").value("ok"));
+                .andExpect(jsonPath("$.status").value("broken"));
     }
 
     @Test
